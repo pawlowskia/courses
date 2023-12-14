@@ -1,7 +1,7 @@
 'use client';
 
 import { Fragment } from 'react';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import { IoIosMenu, IoMdClose } from 'react-icons/io';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 
@@ -32,7 +32,9 @@ export const Navbar = () => {
                 </Disclosure.Button>
               </div>
               <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
-                <Logo />
+                <Link href='/' aria-label='Home Page' title='Home Page' className='flex'>
+                  <Logo includeText />
+                </Link>
                 <div className='hidden sm:ml-6 sm:flex sm:space-x-8'>
                   {navLinks.map(([name, href]) => (
                     <ActiveLink
@@ -47,15 +49,6 @@ export const Navbar = () => {
                 </div>
               </div>
               <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-                <button
-                  type='button'
-                  className='relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
-                >
-                  <span className='absolute -inset-1.5' />
-                  <span className='sr-only'>View cart</span>
-                  <FaShoppingCart className='h-6 w-6' aria-hidden='true' />
-                </button>
-
                 {/* Profile dropdown */}
                 <Menu as='div' className='relative ml-3'>
                   <div>

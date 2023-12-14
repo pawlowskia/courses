@@ -9,7 +9,7 @@ type Props = {
 export const AuthLayout = ({ title, subtitle, children }: Props) => (
   <main className='flex min-h-full overflow-hidden pt-16 sm:py-28'>
     <div className='mx-auto flex w-full max-w-2xl flex-col px-4 sm:px-6'>
-      <Logo />
+      <Logo includeText />
       <div className='mt-10 sm:mt-12'>
         <h1 className='text-center text-2xl font-medium tracking-tight text-gray-900'>{title}</h1>
         {subtitle && <p className='mt-3 text-center text-lg text-gray-600'>{subtitle}</p>}
