@@ -1,17 +1,18 @@
 import { type Metadata } from 'next';
 
-import { PageContentHeader } from '@/components/UI/PageContentHeader';
+import { ContactForm } from '@/components/Sections/ContactSection/ContactForm';
+import { ContactInfo } from '@/components/Sections/ContactSection/ContactInfo';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Do you have any questions or suggestions. Please, do not hesitate to text me!',
+  description: 'Do you have any questions or suggestions? Please, do not hesitate to text me!',
 };
 
 export default function ContactPage() {
   return (
-    <PageContentHeader
-      title='Contact with me'
-      subtitle='Do you have any questions or suggestions. Please, do not hesitate to text me!'
-    />
+    <section className='relative isolate grid grid-cols-1 lg:grid-cols-2'>
+      <ContactInfo />
+      <ContactForm />
+    </section>
   );
 }

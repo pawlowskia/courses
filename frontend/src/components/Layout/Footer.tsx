@@ -24,7 +24,7 @@ export const Footer = () => (
             className='text-gray-400 hover:text-gray-500'
           >
             <span className='sr-only'>{link.name}</span>
-            <link.icon className='h-6 w-6' aria-hidden='true' />
+            <link.icon className='h-6 w-6' aria-hidden />
           </a>
         ))}
       </div>

@@ -5,7 +5,7 @@ import heroSectionImg from '../../../public/images/hero-section-img.webp';
 
 export default function HomePage() {
   return (
-    <div className='max-w-7xl mx-auto'>
+    <>
       <HeroSection
         src={heroSectionImg}
         alt='Jakub Kosakowski'
@@ -17,6 +17,6 @@ export default function HomePage() {
         ]}
       />
       <FAQSection />
-    </div>
+    </>
   );
 }

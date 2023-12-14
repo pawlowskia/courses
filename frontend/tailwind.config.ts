@@ -1,7 +1,7 @@
-import headlessuiPlugin from '@headlessui/tailwindcss';
-import formsPlugin from '@tailwindcss/forms';
-import aspectRatioPlugin from '@tailwindcss/aspect-ratio';
 import { type Config } from 'tailwindcss';
+import aspectRatioPlugin from '@tailwindcss/aspect-ratio';
+import formsPlugin from '@tailwindcss/forms';
+import headlessuiPlugin from '@headlessui/tailwindcss';
 
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],

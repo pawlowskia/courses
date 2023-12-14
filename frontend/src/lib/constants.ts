@@ -1,4 +1,3 @@
-import { type IconType } from 'react-icons';
 import { AiFillInstagram } from 'react-icons/ai';
 import { FaFacebook } from 'react-icons/fa';
 import { TiSocialYoutubeCircular } from 'react-icons/ti';
@@ -89,7 +88,25 @@ export const faqs = [
   },
 ];
 
-export const socialLinks: { name: string; href: Route; icon: IconType }[] = [
+export const contactInfoItems = [
+  {
+    Icon: AiFillInstagram,
+    text: 'Bialystok, Poland',
+    label: 'Address',
+  },
+  {
+    Icon: FaFacebook,
+    text: '(+48) 123-456-789',
+    label: 'Phone Number',
+  },
+  {
+    Icon: TiSocialYoutubeCircular,
+    text: 'kuba@kosak.com',
+    label: 'E-mail address',
+  },
+];
+
+export const socialLinks = [
   {
     name: 'Facebook',
     href: 'https://www.facebook.com/profile.php?id=100007366247100',
