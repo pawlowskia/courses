@@ -28,6 +28,7 @@ dependencies {
 	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("com.stripe:stripe-java:24.11.0")
 }
 
 tasks.withType<Test> {

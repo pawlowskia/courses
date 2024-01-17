@@ -23,5 +23,13 @@ public class UserService {
         return userRepository.findById(userId).orElseThrow();
     }
 
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
     // Add more business logic methods as needed
 }

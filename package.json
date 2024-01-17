@@ -1,0 +1,8 @@
+{
+	"dependencies": {
+		"@stripe/stripe-js": "^2.3.0",
+		"axios": "^1.6.5",
+		"react-chessboard": "^4.3.4",
+		"stripe": "^14.12.0"
+	}
+}

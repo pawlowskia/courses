@@ -26,7 +26,7 @@ export const courses: Course[] = [
     image: '/images/beginner.jpg',
     tags: ['Beginner'],
     duration: 2,
-    price: 29999,
+    price: 0,
     rating: 4.7,
   },
   {
@@ -51,7 +51,7 @@ export const courses: Course[] = [
   },
   {
     id: '1',
-    title: 'Level 0',
+    title: 'Chess openings',
     description: 'Total Beginner course',
     image: '/images/total-beginner.png',
     tags: ['Beginner'],

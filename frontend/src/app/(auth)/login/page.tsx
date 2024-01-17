@@ -25,6 +25,8 @@ export default function SignInPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log('Form data', formData);
+
     try {
       const response = await fetch('http://localhost:8080/api/users/login', {
         method: 'POST',
@@ -37,10 +39,16 @@ export default function SignInPage() {
       if (response.ok) {
         // Handle successful login
         router.push('/courses');
+        // save user data to local storage
+        const user = await response.json();
+        localStorage.setItem('user', JSON.stringify(user));
+        // display a toast welcome message
+        // console.log('Welcome back!' + user.name);
+        alert('Welcome back ' + user.username + '!');
       } else if (response.status === 401) {
         // Handle authentication failure (401)
         console.error('Authentication failed: Invalid email or password');
-        // You can customize the error handling here, e.g., show a specific message to the user
+        alert('Authentication failed: Invalid email or password');
       } else {
         // Handle other errors
         const errorMessage = await response.text();
@@ -66,7 +74,7 @@ export default function SignInPage() {
         </>
       }
     >
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='space-y-6'>
           <TextField
             label='Email address'
@@ -74,6 +82,8 @@ export default function SignInPage() {
             type='email'
             autoComplete='email'
             required
+            value={formData.email}
+            onChange={handleChange}
           />
           <TextField
             label='Password'
@@ -81,6 +91,8 @@ export default function SignInPage() {
             type='password'
             autoComplete='current-password'
             required
+            value={formData.password}
+            onChange={handleChange}
           />
         </div>
         <Button type='submit' color='cyan' className='mt-8 w-full'>
