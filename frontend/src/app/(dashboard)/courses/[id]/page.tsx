@@ -3,12 +3,19 @@ import { useEffect } from 'react';
 import React, { useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 
-const ExecuteEndpointPage = () => {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const ExecuteEndpointPage = ({params : { id }} : Props) => {
+  console.log('courseID:', id);
   let hasAccess = false;
 
   const [positionsInfo, setPositionsInfo] = useState([]);
   const [currentPositionIndex, setCurrentPositionIndex] = useState(0);
-
+  
   useEffect(() => {
     const executeEndpoint = async () => {
       // Retrieve user from local storage
@@ -29,10 +36,23 @@ const ExecuteEndpointPage = () => {
           try {
             const data = await response.json();
             console.log('User courses:', data);
-            hasAccess = true;
+            hasAccess = false;
+            for (let i = 0; i < data.length; i++) {
+              if (data[i].courseId == id) {
+                hasAccess = true;
+                break;
+              }
+            }
+            if (!hasAccess) {
+              console.error('User does not have access to the course.');
+              localStorage.setItem('courseId', id);
+              window.location.href = "/stripe";
+            }
+            
           } catch (error) {
             hasAccess = false;
             console.error('User does not have access to the course.');
+            localStorage.setItem('courseId', id);
             window.location.href = "/stripe";
           }
         } else {
@@ -49,11 +69,40 @@ const ExecuteEndpointPage = () => {
   useEffect(() => {
     const fetchPositions = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/users/positions-for-first-course');
+        var response = await fetch('http://localhost:8080/api/users/positions-for-first-course');
+        if (id == "2")
+          response = await fetch('http://localhost:8080/api/users/positions-for-second-course');
         if (response.ok) {
           const data = await response.json();
           setPositionsInfo(data);
           console.log('Positions:', data);
+
+          const suser = localStorage.getItem('user');
+          if (!suser) {
+            console.error('User not found in local storage.');
+            return;
+          }
+          console.log('User: ', suser)
+
+          const user = JSON.parse(suser);
+          const finishedCourseResponse = await fetch(`http://localhost:8080/api/users/courses/get-last-chapter`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userId: user.id,
+              courseId: 1,
+              }),
+            });
+
+            if (finishedCourseResponse.ok) {
+              console.log('Course already finished');
+              alert("Congratulations! You have completed the course!");
+  
+            } else {
+              console.error('Error: ', finishedCourseResponse.statusText);
+            }
         } else {
           console.error('Error fetching positions:', response.statusText);
         }
@@ -68,6 +117,14 @@ const ExecuteEndpointPage = () => {
   const handleNextPosition = () => {
     if (currentPositionIndex < positionsInfo.length - 1) {
       setCurrentPositionIndex(currentPositionIndex + 1);
+    }
+    if (currentPositionIndex === positionsInfo.length - 2) {
+      console.log('No more positions to show.');
+      // sleep 3 seconds
+      setTimeout(() => {
+        alert("Congratulations! You have completed the course!");
+      }, 700);
+      // alert("Congratulations! You have completed the course!");
     }
   };
 

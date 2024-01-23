@@ -42,6 +42,7 @@ export default function Register() {
       if (response.ok) {
         // Handle success, e.g., redirect to another page
         console.log('Data sent successfully');
+        alert("Account created successfully");
       } else {
         // Handle error
         const errorMessage = await response.text();

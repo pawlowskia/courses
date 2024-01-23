@@ -61,5 +61,17 @@ public class UserCourses {
     public UserCourses() {
         this.purchaseDate = LocalDateTime.now(); // Set the purchase date to the current time
     }
+
+//    public void setLastChapterId(Long chapterId) {
+//        this.lastChapter = new Chapter();
+//        this.lastChapter.setId(chapterId);
+//    }
+//
+//    public Long getLastChapterId() {
+//        if (this.lastChapter != null) {
+//            return this.lastChapter.getId();
+//        }
+//        return null;
+//    }
     // Getters and setters
 }

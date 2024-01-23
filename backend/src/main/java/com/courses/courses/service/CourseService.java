@@ -42,6 +42,20 @@ public class CourseService {
         return positionsInfoList;
     }
 
+    public List<PositionInfo> getPositionsForSecondCourse() {
+        List<Chapter> chapters = chapterRepository.findByCourseId(2L);
+        List<PositionInfo> positionsInfoList = new ArrayList<>();
+
+        for (Chapter chapter : chapters) {
+            List<Position> positions = positionRepository.findByChapterId(chapter.getId());
+            for (Position position : positions) {
+                PositionInfo positionInfo = new PositionInfo(position.getContent(), position.getFenNotation());
+                positionsInfoList.add(positionInfo);
+            }
+        }
+        return positionsInfoList;
+    }
+
     public class PositionInfo {
         @Getter
         private String content;

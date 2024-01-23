@@ -26,7 +26,7 @@ export const courses: Course[] = [
     image: '/images/beginner.jpg',
     tags: ['Beginner'],
     duration: 2,
-    price: 0,
+    price: 2000,
     rating: 4.7,
   },
   {

@@ -22,5 +22,16 @@ public class UserCoursesService {
         userCoursesRepository.save(new UserCourses(userId, courseId));
     }
 
+//    public void saveLastChapter(Long userId, Long courseId, Long chapterId) {
+//        UserCourses userCourses = userCoursesRepository.findByUserIdAndCourseId(userId, courseId);
+//        userCourses.setLastChapterId(chapterId);
+//        userCoursesRepository.save(userCourses);
+//    }
+//
+//    public void getLastChapter(Long userId, Long courseId) {
+//        UserCourses userCourses = userCoursesRepository.findByUserIdAndCourseId(userId, courseId);
+//        userCourses.getLastChapterId();
+//    }
+
     // Additional methods if needed
 }

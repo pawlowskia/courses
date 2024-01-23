@@ -46,6 +46,13 @@ public class UserController {
         return ResponseEntity.ok(positionsContent);
     }
 
+    @GetMapping("/positions-for-second-course")
+    public ResponseEntity<List<CourseService.PositionInfo>> getPositionsForSecondCourse() {
+        List<CourseService.PositionInfo> positionsContent = courseService.getPositionsForSecondCourse();
+        System.out.println("Positions content: " + positionsContent);
+        return ResponseEntity.ok(positionsContent);
+    }
+
     @GetMapping("/{userId}")
     public User getUser(@PathVariable Long userId) {
         return userService.getUser(userId);
@@ -147,6 +154,61 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("couldnt save user to course");
         }
     }
+
+    @PostMapping("/courses/save-user-to-course-2")
+    public ResponseEntity<String> saveUserToCourse2(@RequestBody UserCourseRequest request) {
+        Long userId = request.getUserId();
+        Long courseId = request.getCourseId();
+        System.out.println("Received user id: " + userId);
+
+        try {
+            userCoursesService.saveUserCourse(userId, courseId);
+            System.out.println("User saved to course");
+            return ResponseEntity.ok("User enrolled in the course successfully");
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("couldnt save user to course");
+        }
+    }
+
+//    @PostMapping("/courses/save-last-chapter")
+//    public ResponseEntity<String> saveLastChapter(@RequestBody UserCourseRequest request) {
+//        Long userId = request.getUserId();
+//        Long courseId = request.getCourseId();
+//
+//        System.out.println("Received user id: " + userId);
+//        System.out.println("Received course id: " + courseId);
+//
+//        try {
+//            userCoursesService.saveLastChapter(userId, courseId, 1L);
+//            System.out.println("Last chapter saved");
+//            return ResponseEntity.ok("Last chapter saved successfully");
+//
+//        } catch (Exception e) {
+//            System.out.println("Exception: " + e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("couldnt save last chapter");
+//        }
+//    }
+
+//    @PostMapping("/courses/get-last-chapter")
+//    public ResponseEntity<String> getLastChapter(@RequestBody UserCourseRequest request) {
+//        Long userId = request.getUserId();
+//        Long courseId = request.getCourseId();
+//
+//        System.out.println("Received user id: " + userId);
+//        System.out.println("Received course id: " + courseId);
+//
+//        try {
+//            userCoursesService.getLastChapter(userId, courseId);
+//            System.out.println("Last chapter saved");
+//            return ResponseEntity.ok("Last chapter saved successfully");
+//
+//        } catch (Exception e) {
+//            System.out.println("Exception: " + e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("couldnt save last chapter");
+//        }
+//    }
 
     public static class UserCourseRequest {
         @Getter
